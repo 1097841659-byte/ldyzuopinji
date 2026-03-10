@@ -256,6 +256,11 @@
             return <i data-lucide={name} ref={iconRef} className={className}></i>;
         };
 
+        const optimizeUrl = (url) => {
+            if (!url || url.startsWith('data:')) return url;
+            return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=1200&q=80&output=webp`;
+        };
+
         const PROJECTS = [
             {
                 id: "fission-space",
@@ -273,7 +278,7 @@
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/4.jpg",
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/5.jpg",
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/6.jpg"
-                ],
+                ].map(optimizeUrl),
                 tags: ["可持续设计", "循环经济", "叙事性空间", "玻璃回收", "科技感"]
             },
             {
@@ -293,7 +298,7 @@
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/11.jpg",
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/12.jpg",
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/13.jpg"
-                ],
+                ].map(optimizeUrl),
                 tags: ["毕业设计", "二十四节气", "地域文化", "景观小品", "科普展示"]
             },
             {
@@ -310,7 +315,7 @@
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/15.jpg",
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/16.jpg",
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/17.jpg"
-                ],
+                ].map(optimizeUrl),
                 tags: ["人宠共生", "适老化设计", "精细化", "家居研究", "身心健康"]
             },
             {
@@ -328,7 +333,7 @@
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/20.jpg",
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/21.jpg",
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/22.jpg"
-                ],
+                ].map(optimizeUrl),
                 tags: ["社区更新", "情感化设计", "公共空间", "基层治理", "模块化"]
             },
             {
@@ -346,7 +351,7 @@
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/25.jpg",
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/26.jpg",
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/27.jpg"
-                ],
+                ].map(optimizeUrl),
                 tags: ["工业遗存", "生态格局", "科普游乐", "首钢记忆", "景观重构"]
             },
             {
@@ -362,7 +367,7 @@
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/28.jpg",
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/29.jpg",
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/30.jpg"
-                ],
+                ].map(optimizeUrl),
                 tags: ["ABW布局", "几何空间", "灵动办公", "连续家具", "色彩美学"]
             },
             {
@@ -377,7 +382,7 @@
                 images: [
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/31.jpg",
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/31.jpg"
-                ],
+                ].map(optimizeUrl),
                 tags: ["木兰辞", "快闪活动", "装置设计", "文化叙事", "空间分割"]
             },
             {
@@ -392,7 +397,7 @@
                 images: [
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/32.jpg",
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/32.jpg"
-                ],
+                ].map(optimizeUrl),
                 tags: ["剪纸艺术", "展陈设计", "互动装置", "非遗传承", "空间叙事"]
             },
             {
@@ -408,7 +413,7 @@
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/33.jpg",
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/33.jpg",
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/34.jpg"
-                ],
+                ].map(optimizeUrl),
                 tags: ["百千工程", "乡村振兴", "视觉系统", "品牌设计", "地域特质"]
             },
             {
@@ -424,7 +429,7 @@
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/35%20-%20%E5%89%AF%E6%9C%AC.jpg",
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/35%20-%20%E5%89%AF%E6%9C%AC.jpg",
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/36.jpg"
-                ],
+                ].map(optimizeUrl),
                 tags: ["龟兹文化", "壁画元素", "插画设计", "文创产品", "交互体验"]
             },
             {
@@ -439,7 +444,7 @@
                 images: [
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/37.jpg",
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/37.jpg"
-                ],
+                ].map(optimizeUrl),
                 tags: ["北京中轴线", "文创设计", "符号重构", "视觉传达", "地域文脉"]
             },
             {
@@ -455,7 +460,7 @@
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/38.jpg",
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/38.jpg",
                     "https://raw.githubusercontent.com/1097841659-byte/-/main/39.jpg"
-                ],
+                ].map(optimizeUrl),
                 tags: ["板绘", "手绘", "摄影", "模型制作", "艺术表现"]
             }
         ];
@@ -1111,7 +1116,85 @@
                                     <span className="text-micro text-white/40 block">Phone</span>
                                     <span className="text-2xl font-display">13699232154</span>
                                 </div>
-                                <div className="flex gap-8 justify-end">
+                                <div className="flex flex-wrap gap-8 justify-end items-center">
+                                    <button 
+                                        onClick={async (e) => {
+                                            const btn = e.currentTarget;
+                                            const originalText = btn.innerText;
+                                            btn.innerText = "Baking... Please wait / 正在固化图片...";
+                                            btn.disabled = true;
+                                            btn.style.opacity = "0.5";
+                                            
+                                            try {
+                                                const toBase64 = async (url) => {
+                                                    try {
+                                                        const response = await fetch(url);
+                                                        const blob = await response.blob();
+                                                        return new Promise((resolve, reject) => {
+                                                            const reader = new FileReader();
+                                                            reader.onloadend = () => resolve(reader.result);
+                                                            reader.onerror = reject;
+                                                            reader.readAsDataURL(blob);
+                                                        });
+                                                    } catch (err) {
+                                                        console.warn("Failed to bake image:", url, err);
+                                                        return url; // Keep original if failed
+                                                    }
+                                                };
+
+                                                // Deep copy and bake images
+                                                const bakedProjects = [];
+                                                for (const p of PROJECTS) {
+                                                    const bakedImages = [];
+                                                    for (const img of p.images) {
+                                                        bakedImages.push(await toBase64(img));
+                                                    }
+                                                    bakedProjects.push({ ...p, images: bakedImages });
+                                                }
+
+                                                let html = document.documentElement.outerHTML;
+                                                
+                                                // Replace the PROJECTS array in the script
+                                                // We use a more specific marker or just the variable name
+                                                const projectsStartMarker = 'const PROJECTS = [';
+                                                const projectsEndMarker = '];';
+                                                
+                                                const startIndex = html.indexOf(projectsStartMarker);
+                                                const endIndex = html.indexOf(projectsEndMarker, startIndex) + projectsEndMarker.length;
+                                                
+                                                if (startIndex !== -1 && endIndex !== -1) {
+                                                    const newProjectsScript = `const PROJECTS = ${JSON.stringify(bakedProjects, null, 2)};`;
+                                                    html = html.slice(0, startIndex) + newProjectsScript + html.slice(endIndex);
+                                                }
+                                                
+                                                // Remove the baker button from the baked version to keep it clean
+                                                html = html.replace(/<button[^>]*Bake Offline[^>]*>[\s\S]*?<\/button>/g, "");
+                                                html = html.replace(/<button[^>]*生成离线固化版[^>]*>[\s\S]*?<\/button>/g, "");
+
+                                                const blob = new Blob([html], { type: 'text/html' });
+                                                const url = URL.createObjectURL(blob);
+                                                const a = document.createElement('a');
+                                                a.href = url;
+                                                a.download = 'LIN_DANYI_OFFLINE_PORTFOLIO.html';
+                                                document.body.appendChild(a);
+                                                a.click();
+                                                document.body.removeChild(a);
+                                                URL.revokeObjectURL(url);
+                                                
+                                                alert("Success! Your offline portfolio has been generated.\n成功！离线版网页已生成并开始下载。");
+                                            } catch (err) {
+                                                alert("Baking failed. Error: " + err.message);
+                                                console.error(err);
+                                            } finally {
+                                                btn.innerText = originalText;
+                                                btn.disabled = false;
+                                                btn.style.opacity = "1";
+                                            }
+                                        }}
+                                        className="text-[10px] uppercase tracking-widest px-6 py-3 border border-white/20 rounded-full hover:bg-white hover:text-ink transition-all duration-500 font-bold"
+                                    >
+                                        Bake Offline Version / 生成离线固化版
+                                    </button>
                                     <a href="#" className="text-micro hover:text-white/60 transition-luxury">Behance</a>
                                     <a href="#" className="text-micro hover:text-white/60 transition-luxury">LinkedIn</a>
                                 </div>
