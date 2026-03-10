@@ -20,14 +20,14 @@ export const PROJECTS: Project[] = [
     category: "零售空间设计",
     location: "北京 / Beijing",
     status: "概念方案 / Concept",
-    description: "方案基于叙事性的零售空间设计，聚焦环境问题以玻璃回收作为创作概念，循环工序为媒介在空间中讲述回收故事，赋予“裂变之间”的名字。通过分隔交叠统一等方式加强空间叙事性，以不同角度获得故事体验。空间塑造上通过几何图形与空间切割作为设计语言，装饰上采用金属、玻璃与镜面等材质，色彩采用黑白灰加蓝，打造冷色科技感的空间。加入科普展示互动手工体验等多维度的空间体验，将空间形态和故事转译，更好服务目标对象人群。",
+    description: "方案基于叙事性的零售空间设计，聚焦环境问题以玻璃回收作为创作概念，循环工序为媒介在空间中讲述回收故事，赋予“裂变之间”的名字。通过分隔交叠统一等方式加强空间叙事性，以不同角度获得故事体验。空间塑造上通过几何图形与空间切割作为设计语言，装饰上采用金属、玻璃与镜面等材质，色彩采用黑白灰加蓝，打造冷色科技感的空间.加入科普展示互动手工体验等多维度的空间体验，将空间形态和故事转译，更好服务目标对象人群。",
     images: [
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/1%20(2).jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/2%20(2).jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/3%20(2).jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/4.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/5.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/6.jpg"
+      "/images/1 (2).jpg",
+      "/images/2 (2).jpg",
+      "/images/3 (2).jpg",
+      "/images/4.jpg",
+      "/images/5.jpg",
+      "/images/6.jpg"
     ],
     tags: ["可持续设计", "循环经济", "叙事性空间", "玻璃回收", "科技感"]
   },
@@ -41,13 +41,13 @@ export const PROJECTS: Project[] = [
     status: "毕业设计 / Thesis",
     description: "设计作为毕业设计，方案基于二十四节和迁西当地文化内涵，设计了节气文化博物馆和当地三处景观小品，共四个设计方案。运用多种展示手法，结合当地节气物候农耕习俗设计，深入科普介绍二十四节气历史文化，充分体验体现出了地域文化和传统文化的丰富内容 and 多样性。根据节气的不同特点元素结合场地现状进行设计，并且在景观中设计加强乡土植物的应用，突出地区独特特色。",
     images: [
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/7.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/8.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/9.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/10.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/11.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/12.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/13.jpg"
+      "/images/7.jpg",
+      "/images/8.jpg",
+      "/images/9.jpg",
+      "/images/10.jpg",
+      "/images/11.jpg",
+      "/images/12.jpg",
+      "/images/13.jpg"
     ],
     tags: ["毕业设计", "二十四节气", "地域文化", "景观小品", "科普展示"]
   },
@@ -59,12 +59,12 @@ export const PROJECTS: Project[] = [
     category: "家居空间设计",
     location: "北京 / Beijing",
     status: "研究方案 / Research",
-    description: "宠物是人类忠实的伙伴，为我们的身心健康带来了许多积极的影响。有研究发现，长期养宠物有助延缓大脑衰老，降低残疾风险，提高老人存活率。在心里层面更可以减轻其老人的焦虑抑郁孤独感等不良情绪，也可以提升幸福感自尊和同理心。此外宠物是老人人际关系系统外的补偿，激发老人的照料行为，为他们带来快乐和安慰。本设计方案根据居住者的身体状况，以及生活行为习惯和养宠所需为依据，深入剖析居住空间的使用需求，关注空间规划与适应性设计，精心打造适老化改造方案。",
+    description: "宠物是人类忠实的伙伴，为我们的身心健康带来了许多积极的影响。有研究发现，长期养宠物有助延缓大脑衰老，降低残疾风险，提高老人存活率.在心里层面更可以减轻其老人的焦虑抑郁孤独感等不良情绪，也可以提升幸福感自尊和同理心。此外宠物是老人人际关系系统外的补偿，激发老人的照料行为，为他们带来快乐和安慰。本设计方案根据居住者的身体状况，以及生活行为习惯和养宠所需为依据，深入剖析居住空间的使用需求，关注空间规划与适应性设计，精心打造适老化改造方案。",
     images: [
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/14.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/15.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/16.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/17.jpg"
+      "/images/14.jpg",
+      "/images/15.jpg",
+      "/images/16.jpg",
+      "/images/17.jpg"
     ],
     tags: ["人宠共生", "适老化设计", "精细化", "家居研究", "身心健康"]
   },
@@ -78,11 +78,11 @@ export const PROJECTS: Project[] = [
     status: "建成项目 / Built",
     description: "改革开放以来,中国的社会经济与城市建设飞速发展,人民的生活条件得到显著改善。同时基层服务中心业已成为城市公共领域最为突出的空间形态之一，并在当前基层党建与治理创新工作中发挥重要载体作用。基层服务中心的出现与持续性建设，实质上是顶层设计与地方实践共同作用下的结果。设计以“情感化设计”为核心理念，旨在通过对新时代社区活动空间的改造与优化，提升社区居民的归属感与参与感，营造一个富有情感温度、功能齐全、灵活多变的社区活动中心。",
     images: [
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/18.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/19.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/20.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/21.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/22.jpg"
+      "/images/18.jpg",
+      "/images/19.jpg",
+      "/images/20.jpg",
+      "/images/21.jpg",
+      "/images/22.jpg"
     ],
     tags: ["社区更新", "情感化设计", "公共空间", "基层治理", "模块化"]
   },
@@ -96,11 +96,11 @@ export const PROJECTS: Project[] = [
     status: "竞赛方案 / Competition",
     description: "为此设计完成于2021年，设计改造优化了新首钢园区群明湖景观，通过设计改造保护工业遗存，整合拼贴环境；构建生态格局，科普绿色理念；重构首钢记忆。方案分为综合服务区、科普游乐区、西岸活力区、极限运动区。以筒仓作为形象标识，吸引游客投入游览。科普游乐区将北岸草坪、高线公园、湿地公园、湖心岛区域结合为一体考虑,将科普功能与游乐功能融合，打造儿童综合活动区域。西岸活力区带动西岸片区 and 高线尾端部分形成活力圈。极限运动区以滑雪大跳台和四大筒仓为优质的景观环境亮点，观景娱乐功能为设计重点，丰富游客游览体验。",
     images: [
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/23.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/24.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/25.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/26.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/27.jpg"
+      "/images/23.jpg",
+      "/images/24.jpg",
+      "/images/25.jpg",
+      "/images/26.jpg",
+      "/images/27.jpg"
     ],
     tags: ["工业遗存", "生态格局", "科普游乐", "首钢记忆", "景观重构"]
   },
@@ -112,11 +112,11 @@ export const PROJECTS: Project[] = [
     category: "办公空间设计",
     location: "北京 / Beijing",
     status: "概念方案 / Concept",
-    description: "此设计完成于2021年，设计内容为现代化办公空间，首先通过对点线面和几何形状的系统研究调研完成设计，通过特殊设计的连续家具联系空间，使空间即开放又联系。利用“ABW”布局理念，打造集娱乐、灵动与工作于一体的工作空间。封闭办公区，半封空间，开放交流空间过度渗透联合整体。以几何方式创造的空间相互渗透，使其具有独立和联系，并且使用活力的色彩，连续整体装饰，天花，家具到布局的统一来打造以上空间。",
+    description: "此设计完成于2021年，设计内容为现代化办公空间，首先通过对点线面和几何形状的系统研究调研完成设计，通过特殊设计的连续家具联系空间，使空间即开放又联系。利用“ABW”布局理念，打造集娱乐、灵动与工作于一体的工作空间。封闭办公区，半封空间，开放交流空间过度渗透联合整体.以几何方式创造的空间相互渗透，使其具有独立和联系，并且使用活力的色彩，连续整体装饰，天花，家具到布局的统一来打造以上空间。",
     images: [
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/28.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/29.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/30.jpg"
+      "/images/28.jpg",
+      "/images/29.jpg",
+      "/images/30.jpg"
     ],
     tags: ["ABW布局", "几何空间", "灵动办公", "连续家具", "色彩美学"]
   },
@@ -128,10 +128,10 @@ export const PROJECTS: Project[] = [
     category: "景观/装置设计",
     location: "北京 / Beijing",
     status: "快闪活动 / Pop-up",
-    description: "项目为室外主题快闪活动，设计主要以木兰辞为设计理念，将场地分割成两部分，分别为沙场和家园，座椅以丝带形式环抱着家园表达木兰对家和国的守护。中间可坐可游的台子源于土楼的形象，并以木质丝带环绕作为灯光，柱子设计为兵器的形象，带入写有祖训的旌旗。加入远山和云的意向作为背板，可通过进入后面的园林游玩。沙场部分主要以不规则砖墙构成，设置两个次入口，增加游人的可玩性。",
+    description: "项目为室外主题快闪活动，设计主要以木兰辞为设计理念，将场地分割成两部分，分别为沙场和家园，座椅以丝带形式环抱着家园表达木兰对家和国的守护。中间可坐可游的台子源于土楼的形象，并以木质丝带环绕作为灯光，柱子设计为兵器的形象，带入写有祖训的旌旗。加入远山和云的意向作为背板，可通过进入后面的园林游玩.沙场部分主要以不规则砖墙构成，设置两个次入口，增加游人的可玩性。",
     images: [
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/31.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/31.jpg"
+      "/images/31.jpg",
+      "/images/31.jpg"
     ],
     tags: ["木兰辞", "快闪活动", "装置设计", "文化叙事", "空间分割"]
   },
@@ -145,24 +145,25 @@ export const PROJECTS: Project[] = [
     status: "展览设计 / Exhibition",
     description: "本项目为展陈空间设计，以剪纸为主展示了剪纸的历史和种类，主要设计了六种互动展具来进行展览，分别为剪纸投影展具，可打开的窗花展具，可转动欣赏剪纸的展具，垂钓剪纸装置，屏风展板和亚克力垂钓展板，构成多样丰富的展示空间。",
     images: [
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/32.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/32.jpg"
+      "/images/32.jpg",
+      "/images/32.jpg"
     ],
     tags: ["剪纸艺术", "展陈设计", "互动装置", "非遗传承", "空间叙事"]
   },
   {
     id: "village-visual-identity",
     title: "北京市“百千工程”村落视觉环境提升",
-    subtitle: "韩家铺村与梨花村品牌视觉系统设计",
+    subtitle: "韩家铺村与梨花村 brand 视觉系统设计",
     year: "2024",
     category: "视觉传达设计",
     location: "北京 / Beijing",
     status: "落地项目 / Built",
     description: "本视觉设计方案深耕于北京市“百千工程”村落环境提升实践，聚焦韩家铺村与梨花村的地域特质，构建出具有品牌传播力的超级视觉系统 。韩家铺村标识以代表丰收与喜悦的“金把黄梨”色为视觉锚点，将村落建筑意象、永定河水纹及毗邻雪都滑雪场的天际线进行艺术化转译，在色彩上通过梨黄、砖灰与生态绿的比例平衡，勾勒出生产、生活、生态三位一体的康养画卷 ；梨花村标识则采取更为极简的几何语言，将梨花花瓣形态概括为圆形并与标志性的“贡树”及民居门洞元素重构，在强化视觉符号识别性的同时，深刻寓意了村庄与百年梨园共生共荣的乡土韧性，整体设计在理性排版与感性叙事的交融中，完成了从传统乡村元素到现代品牌标识的职业化转译与落地赋能 。",
     images: [
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/33.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/33.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/34.jpg"
+      "/images/33.jpg",
+      "/images/33.jpg",
+      "/images/34.jpg",
+      "/images/34.jpg"
     ],
     tags: ["百千工程", "乡村振兴", "视觉系统", "品牌设计", "地域特质"]
   },
@@ -174,11 +175,11 @@ export const PROJECTS: Project[] = [
     category: "视觉传达/文创设计",
     location: "新疆 库车 / Kuqa",
     status: "概念方案 / Concept",
-    description: "设计以龟兹文化为精神内核，通过壁画元素的现代表达与跨地域建筑文化的对话，构建出一场穿越时空的视觉漫游 。插画设计提取了龟兹壁画中灵动的动物形象作为叙事线索，将古典线条的韵律美与现代几何色块的拼接逻辑深度融合 。在产品形态上，依托可自由拆卸组合的亚克力“摇摇乐”与插画摆件作为互动载体，以及明信片，邮票，手机壁纸，丝巾等产品作为载体。增强了消费者的参与感与趣味性，使千年的文化符号在现代交互设计中焕发全新的生命力 。",
+    description: "设计以龟兹文化为精神内核，通过壁画元素的现代表达与跨地域建筑文化的对话，构建出一场穿越时空的视觉漫游 。插画设计提取了龟兹壁画中灵动的动物形象作为叙事线索，将古典线条的韵律美与现代几何色块的拼接逻辑深度融合 。在产品形态上，依托可自由拆卸组合的亚克力“摇摇乐”与插画摆件作为互动载体，以及明信片，邮票，手机壁纸，丝巾等产品作为载体.增强了消费者的参与感与趣味性，使千年的文化符号在现代交互设计中焕发全新的生命力 。",
     images: [
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/35%20-%20%E5%89%AF%E6%9C%AC.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/35%20-%20%E5%89%AF%E6%9C%AC.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/36.jpg"
+      "/images/35.jpg",
+      "/images/35.jpg",
+      "/images/36.jpg"
     ],
     tags: ["龟兹文化", "壁画元素", "插画设计", "文创产品", "交互体验"]
   },
@@ -192,8 +193,8 @@ export const PROJECTS: Project[] = [
     status: "概念方案 / Concept",
     description: "本文创系列设计《风起正阳》与《琉璃印记》聚焦于北京历史地标肌理的符号化重构，旨在通过现代设计语言赋予传统建筑全新的叙事张力，其中《风起正阳》利用平面层叠与渐变色谱的视觉表现，将正阳门“三桥四门五牌楼”的宏伟意象进行多维纵深转译，精准捕捉了中轴线序列的庄重仪式感与空间秩序美学；而《琉璃印记》则以传统琉璃瓦为灵感源点，通过严谨的左右对称逻辑提炼“琉”字形态，将历史材质的文化积淀与极简的几何结构无缝衔接，在理性的排版中完成了建筑遗产从历史符号到现代审美载体的专业赋能，展现了在视觉传达领域对地域文脉的深度洞察与专业表现力。",
     images: [
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/37.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/37.jpg"
+      "/images/37.jpg",
+      "/images/37.jpg"
     ],
     tags: ["北京中轴线", "文创设计", "符号重构", "视觉传达", "地域文脉"]
   },
@@ -207,9 +208,9 @@ export const PROJECTS: Project[] = [
     status: "个人作品 / Personal Works",
     description: "这部分分位为板绘，手绘，摄影作品三部分。板绘作品以“首建典藏地”以展览路街道各处建筑为主题，平面的方式表达建筑环境和层次，四个板绘以不同风格和颜色去表达建筑内容，带来不一样的视觉体验。以及部分手工模型制作照片，包括景观，建筑，室内等模型制作，主材料为木板，白卡纸，pvc等。以及摄影作品，主要拍摄了白塔寺风景。以及部分马克笔手绘作品，均为自己设计，绘画完成的方案。",
     images: [
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/38.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/38.jpg",
-      "https://raw.githubusercontent.com/1097841659-byte/-/main/39.jpg"
+      "/images/38.jpg",
+      "/images/38.jpg",
+      "/images/39.jpg"
     ],
     tags: ["板绘", "手绘", "摄影", "模型制作", "艺术表现"]
   }

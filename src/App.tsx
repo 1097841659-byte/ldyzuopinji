@@ -433,7 +433,7 @@ export default function App() {
               {/* Enlarged Square Photo */}
               <div className="w-full max-w-[320px] aspect-square bg-gray-light overflow-hidden rounded-2xl mb-8 relative group">
                 <img 
-                  src="https://raw.githubusercontent.com/1097841659-byte/-/main/1.jpg" 
+                  src="/images/1.jpg" 
                   alt="Profile" 
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-luxury duration-700"
                   referrerPolicy="no-referrer"
