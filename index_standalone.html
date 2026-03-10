@@ -21,6 +21,39 @@
                 background-color: var(--bg);
                 overflow-x: hidden;
             }
+            /* Loading Screen Styles */
+            #global-loader {
+                position: fixed;
+                inset: 0;
+                background: white;
+                z-index: 9999;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: opacity 0.8s ease, visibility 0.8s;
+            }
+            #global-loader.fade-out {
+                opacity: 0;
+                visibility: hidden;
+            }
+            .loader-bar {
+                width: 200px;
+                height: 2px;
+                background: #f0f0f0;
+                margin-top: 20px;
+                position: relative;
+                overflow: hidden;
+            }
+            .loader-progress {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                background: #141414;
+                width: 0%;
+                transition: width 0.4s ease;
+            }
             .font-display { font-family: 'Inter', sans-serif; }
             .text-display {
                 font-size: clamp(3rem, 10vw, 12rem);
@@ -68,7 +101,50 @@
     </script>
 </head>
 <body>
+    <!-- Global Loader -->
+    <div id="global-loader">
+        <div class="text-micro" style="letter-spacing: 0.5em;">LIN DAN YI</div>
+        <div class="loader-bar">
+            <div id="loader-progress" class="loader-progress"></div>
+        </div>
+    </div>
+
     <div id="root"></div>
+
+    <!-- Preload Critical Images -->
+    <script>
+        const criticalImages = [
+            "https://raw.githubusercontent.com/1097841659-byte/-/main/1.jpg",
+            "https://raw.githubusercontent.com/1097841659-byte/-/main/1%20(2).jpg",
+            "https://raw.githubusercontent.com/1097841659-byte/-/main/7.jpg",
+            "https://raw.githubusercontent.com/1097841659-byte/-/main/14.jpg"
+        ];
+        
+        let loadedCount = 0;
+        const loader = document.getElementById('global-loader');
+        const progressBar = document.getElementById('loader-progress');
+
+        criticalImages.forEach(src => {
+            const img = new Image();
+            img.src = src;
+            img.onload = img.onerror = () => {
+                loadedCount++;
+                const progress = (loadedCount / criticalImages.length) * 100;
+                progressBar.style.width = progress + '%';
+                
+                if (loadedCount === criticalImages.length) {
+                    setTimeout(() => {
+                        loader.classList.add('fade-out');
+                    }, 500);
+                }
+            };
+        });
+
+        // Fallback: hide loader after 5 seconds anyway
+        setTimeout(() => {
+            loader.classList.add('fade-out');
+        }, 5000);
+    </script>
 
     <!-- Load React, ReactDOM, Babel, and Framer Motion -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -82,7 +158,86 @@
         const { useState, useEffect, useRef } = React;
         const { motion, AnimatePresence, useScroll, useTransform, useSpring } = FramerMotion;
 
-        // Lucide Icon Component Helper
+        // --- Image Cache System (IndexedDB) ---
+        const DB_NAME = 'PortfolioImageCache';
+        const STORE_NAME = 'images';
+
+        const initDB = () => {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open(DB_NAME, 1);
+                request.onupgradeneeded = (e) => {
+                    const db = e.target.result;
+                    if (!db.objectStoreNames.contains(STORE_NAME)) {
+                        db.createObjectStore(STORE_NAME);
+                    }
+                };
+                request.onsuccess = (e) => resolve(e.target.result);
+                request.onerror = (e) => reject(e.target.error);
+            });
+        };
+
+        const getCachedImage = async (url) => {
+            try {
+                const db = await initDB();
+                return new Promise((resolve) => {
+                    const transaction = db.transaction(STORE_NAME, 'readonly');
+                    const store = transaction.objectStore(STORE_NAME);
+                    const request = store.get(url);
+                    request.onsuccess = async () => {
+                        if (request.result) {
+                            resolve(URL.createObjectURL(request.result));
+                        } else {
+                            // Not in cache, fetch and store
+                            try {
+                                const response = await fetch(url);
+                                const blob = await response.blob();
+                                const writeTx = db.transaction(STORE_NAME, 'readwrite');
+                                writeTx.objectStore(STORE_NAME).put(blob, url);
+                                resolve(URL.createObjectURL(blob));
+                            } catch (err) {
+                                resolve(url); // Fallback to original URL
+                            }
+                        }
+                    };
+                    request.onerror = () => resolve(url);
+                });
+            } catch (e) {
+                return url;
+            }
+        };
+
+        // --- Components ---
+
+        const CachedImage = ({ src, alt, className, ...props }) => {
+            const [displaySrc, setDisplaySrc] = useState('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'); // transparent pixel
+            const [isLoaded, setIsLoaded] = useState(false);
+
+            useEffect(() => {
+                let isMounted = true;
+                getCachedImage(src).then(url => {
+                    if (isMounted) setDisplaySrc(url);
+                });
+                return () => { isMounted = false; };
+            }, [src]);
+
+            return (
+                <div className={`relative overflow-hidden bg-gray-100 ${className}`}>
+                    <img
+                        src={displaySrc}
+                        alt={alt}
+                        onLoad={() => setIsLoaded(true)}
+                        className={`w-full h-full object-cover transition-opacity duration-700 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+                        {...props}
+                    />
+                    {!isLoaded && (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-6 h-6 border-2 border-ink/10 border-t-ink rounded-full animate-spin" />
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
         const Icon = ({ name, size = 24, className = "" }) => {
             const iconRef = useRef(null);
             useEffect(() => {
@@ -394,10 +549,10 @@
                     className="relative group cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100 border border-black/5"
                     whileHover="hover"
                 >
-                    <motion.img
+                    <CachedImage
                         src={project.images[0]}
                         alt={project.title}
-                        className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
+                        className="w-full h-full transition-transform duration-[1.5s] ease-out group-hover:scale-110"
                     />
                     
                     <div className="absolute top-4 left-4 text-[10px] font-mono opacity-40 group-hover:opacity-100 transition-opacity text-white mix-blend-difference">
@@ -443,12 +598,9 @@
 
                         <div className="max-w-[1800px] mx-auto">
                             <section className={`${project.id === 'fission-space' ? 'aspect-[1.5/1]' : 'h-screen'} relative overflow-hidden`}>
-                                <motion.img 
-                                    initial={{ scale: 1.1 }}
-                                    animate={{ scale: 1 }}
-                                    transition={{ duration: 1.5 }}
+                                <CachedImage 
                                     src={project.images[0]} 
-                                    className="w-full h-full object-cover cursor-zoom-in"
+                                    className="w-full h-full cursor-zoom-in"
                                     onClick={() => setZoomedImage(project.images[0])}
                                 />
                                 <div className="absolute inset-0 bg-black/20 pointer-events-none" />
@@ -494,7 +646,7 @@
                                             onClick={() => setZoomedImage(img)}
                                         >
                                             <div className="relative overflow-hidden aspect-auto">
-                                                <img 
+                                                <CachedImage 
                                                     src={img} 
                                                     className="w-full h-auto transition-luxury duration-1000 group-hover:scale-105" 
                                                 />
@@ -650,10 +802,10 @@
                                     className="flex flex-col items-center text-center"
                                 >
                                     <div className="w-full max-w-[320px] aspect-square bg-gray-light overflow-hidden rounded-2xl mb-8 relative group">
-                                        <img 
+                                        <CachedImage 
                                             src="https://raw.githubusercontent.com/1097841659-byte/-/main/1.jpg" 
                                             alt="Profile" 
-                                            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-luxury duration-700"
+                                            className="w-full h-full grayscale hover:grayscale-0 transition-luxury duration-700"
                                         />
                                     </div>
                                     <h2 className="text-4xl font-display font-bold tracking-tight mb-6">林丹沂</h2>
