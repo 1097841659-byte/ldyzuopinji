@@ -356,24 +356,24 @@ const ProjectModal = ({ project, onClose }: { project: Project, onClose: () => v
 export default function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
+  const { scrollXProgress } = useScroll({
     container: scrollContainerRef,
   });
 
-  const smoothProgress = useSpring(scrollYProgress, {
+  const smoothProgress = useSpring(scrollXProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001
   });
 
-  const handleSliderClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!scrollContainerRef.current) return;
     const rect = e.currentTarget.getBoundingClientRect();
-    const y = e.clientY - rect.top;
-    const progress = y / rect.height;
-    const scrollHeight = scrollContainerRef.current.scrollHeight - scrollContainerRef.current.clientHeight;
+    const x = e.clientX - rect.left;
+    const progress = x / rect.width;
+    const scrollWidth = scrollContainerRef.current.scrollWidth - scrollContainerRef.current.clientWidth;
     scrollContainerRef.current.scrollTo({
-      top: progress * scrollHeight,
+      left: progress * scrollWidth,
       behavior: 'smooth'
     });
   };
@@ -647,107 +647,123 @@ export default function App() {
         </div>
       </section>
 
-      {/* Smooth Scrolling Projects Section */}
-      <section id="projects" className="py-32 bg-white">
-        <div className="max-w-[1800px] mx-auto px-10">
-          <div className="mb-20">
+      {/* Projects Section - Horizontal Snap Gallery */}
+      <section id="projects" className="py-32 bg-white overflow-hidden">
+        <div className="max-w-[1800px] mx-auto px-10 mb-16 flex justify-between items-end">
+          <div>
             <span className="text-micro mb-4 block">Portfolio</span>
             <h2 className="text-6xl md:text-8xl tracking-tighter">Selected Works</h2>
           </div>
-
-          <div className="flex flex-col lg:flex-row gap-12 items-start">
-            {/* Project Box - Enclosed Frame with Smooth Scroll */}
-            <div 
-              className="flex-1 border-2 border-ink/10 p-4 md:p-6 bg-white shadow-2xl shadow-black/5 rounded-sm relative"
+          
+          {/* Navigation Controls */}
+          <div className="hidden md:flex gap-4 mb-4">
+            <button 
+              onClick={() => scrollContainerRef.current?.scrollBy({ left: -600, behavior: 'smooth' })}
+              className="p-4 border border-ink/10 rounded-full hover:bg-ink hover:text-white transition-all duration-500 group"
+              aria-label="Previous project"
             >
-              <div className="absolute -top-3 left-8 bg-white px-4 text-[10px] font-bold tracking-widest uppercase text-ink/40">
-                Project Catalog
-              </div>
-              
-              <div 
-                ref={scrollContainerRef}
-                className="border border-ink/5 p-6 md:p-10 bg-gray-50/50 h-[800px] overflow-y-auto scrollbar-hide"
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                  {PROJECTS.map((project, idx) => (
-                    <motion.div
-                      key={project.id}
-                      initial={{ opacity: 0, y: 50 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: false, margin: "-100px" }}
-                      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    >
-                      <ProjectCard 
-                        index={idx}
-                        project={project} 
-                        onClick={() => setSelectedProject(project)} 
-                      />
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
+              <ChevronLeft size={24} className="group-hover:scale-110 transition-transform" />
+            </button>
+            <button 
+              onClick={() => scrollContainerRef.current?.scrollBy({ left: 600, behavior: 'smooth' })}
+              className="p-4 border border-ink/10 rounded-full hover:bg-ink hover:text-white transition-all duration-500 group"
+              aria-label="Next project"
+            >
+              <ChevronRight size={24} className="group-hover:scale-110 transition-transform" />
+            </button>
+          </div>
+        </div>
 
-              <div className="absolute -bottom-3 right-8 bg-white px-4 text-[10px] font-bold tracking-widest uppercase text-ink/40">
-                {PROJECTS.length} Total Works
-              </div>
-            </div>
-
-            {/* Navigation on the Right - Tactile Solid Slider */}
-            <div className="flex lg:flex-col gap-6 sticky top-32 items-center">
-              <div className="hidden lg:flex flex-col items-center py-4">
-                {/* Top Arrow (Triangle) */}
-                <button 
-                  onClick={() => scrollContainerRef.current?.scrollBy({ top: -200, behavior: 'smooth' })}
-                  className="text-black/40 hover:text-ink transition-colors mb-6"
+        {/* Horizontal Scroll Container - Two Rows */}
+        <div 
+          ref={scrollContainerRef}
+          className="flex overflow-x-auto scrollbar-hide snap-x snap-mandatory px-10 pb-12"
+          style={{ scrollPadding: '2.5rem' }}
+        >
+          <div className="flex flex-col gap-12">
+            {/* Row 1 */}
+            <div className="flex gap-6">
+              {PROJECTS.filter((_, i) => i % 2 === 0).map((project, idx) => (
+                <motion.div
+                  key={project.id}
+                  className="min-w-[42vw] md:min-w-[320px] lg:min-w-[380px] snap-start"
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: idx * 0.1 }}
                 >
-                  <svg width="18" height="14" viewBox="0 0 14 12" fill="currentColor">
-                    <path d="M7 0L14 12H0L7 0Z" />
-                  </svg>
-                </button>
-
-                {/* The Solid Slider Track */}
-                <div 
-                  onClick={handleSliderClick}
-                  className="w-6 h-[500px] bg-gray-200/50 rounded-full relative cursor-pointer border border-black/5 shadow-inner"
-                >
-                  {/* The Solid Sliding Handle (Tactile Pill) */}
-                  <motion.div 
-                    className="absolute left-0 right-0 w-full bg-ink rounded-full shadow-xl flex flex-col items-center justify-center group z-20"
-                    style={{ 
-                      height: "80px",
-                      top: useTransform(smoothProgress, [0, 1], ["0%", "calc(100% - 80px)"])
-                    }}
-                  >
-                    {/* Grip lines for "Solid" feel */}
-                    <div className="flex flex-col gap-1.5 pointer-events-none">
-                      <div className="w-3 h-0.5 bg-white/30 rounded-full" />
-                      <div className="w-3 h-0.5 bg-white/30 rounded-full" />
-                      <div className="w-3 h-0.5 bg-white/30 rounded-full" />
-                    </div>
-                  </motion.div>
-
-                  {/* Subtle progress fill */}
-                  <motion.div 
-                    className="absolute top-0 left-0 right-0 bg-ink/5 rounded-full pointer-events-none"
-                    style={{ height: useTransform(smoothProgress, [0, 1], ["0%", "100%"]) }}
+                  <ProjectCard 
+                    index={idx * 2}
+                    project={project} 
+                    onClick={() => setSelectedProject(project)} 
                   />
-                </div>
-
-                {/* Bottom Arrow */}
-                <button 
-                  onClick={() => scrollContainerRef.current?.scrollBy({ top: 200, behavior: 'smooth' })}
-                  className="text-black/40 hover:text-ink transition-colors mt-6 rotate-180"
-                >
-                  <svg width="18" height="14" viewBox="0 0 14 12" fill="currentColor">
-                    <path d="M7 0L14 12H0L7 0Z" />
-                  </svg>
-                </button>
-                
-                <div className="mt-8 text-[10px] font-bold tracking-[0.2em] uppercase vertical-text opacity-20">
-                  Scroll Progress
-                </div>
-              </div>
+                  <div className="mt-4 flex justify-between items-start">
+                    <div className="max-w-[85%]">
+                      <h3 className="text-lg md:text-xl font-display font-bold tracking-tight leading-tight">{project.title}</h3>
+                      <p className="text-[10px] md:text-xs opacity-40 mt-1 font-light line-clamp-1">{project.subtitle}</p>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-[9px] opacity-20 block">{project.year}</span>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
+            
+            {/* Row 2 */}
+            <div className="flex gap-6 ml-12 md:ml-24">
+              {PROJECTS.filter((_, i) => i % 2 !== 0).map((project, idx) => (
+                <motion.div
+                  key={project.id}
+                  className="min-w-[42vw] md:min-w-[320px] lg:min-w-[380px] snap-start"
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: idx * 0.1 }}
+                >
+                  <ProjectCard 
+                    index={idx * 2 + 1}
+                    project={project} 
+                    onClick={() => setSelectedProject(project)} 
+                  />
+                  <div className="mt-4 flex justify-between items-start">
+                    <div className="max-w-[85%]">
+                      <h3 className="text-lg md:text-xl font-display font-bold tracking-tight leading-tight">{project.title}</h3>
+                      <p className="text-[10px] md:text-xs opacity-40 mt-1 font-light line-clamp-1">{project.subtitle}</p>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-[9px] opacity-20 block">{project.year}</span>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Spacer for end of scroll */}
+          <div className="min-w-[15vw] h-full flex-shrink-0" />
+        </div>
+
+        {/* Visual Progress Bar */}
+        <div className="max-w-[1800px] mx-auto px-10 mt-8">
+          <div 
+            onClick={handleProgressClick}
+            className="h-4 flex items-center cursor-pointer group"
+          >
+            <div className="h-px w-full bg-gray-100 relative overflow-hidden">
+              <motion.div 
+                className="absolute top-0 left-0 h-full bg-ink"
+                style={{ 
+                  width: useTransform(smoothProgress, [0, 1], ["0%", "100%"]),
+                  scaleX: useTransform(smoothProgress, [0, 1], [0.1, 1]),
+                  originX: 0
+                }}
+              />
+            </div>
+          </div>
+          <div className="flex justify-between mt-4 text-[10px] uppercase tracking-[0.2em] opacity-20 font-bold">
+            <span>01 / Start</span>
+            <span>{PROJECTS.length.toString().padStart(2, '0')} / End</span>
           </div>
         </div>
       </section>

@@ -22,9 +22,9 @@ export const PROJECTS: Project[] = [
     status: "概念方案 / Concept",
     description: "方案基于叙事性的零售空间设计，聚焦环境问题以玻璃回收作为创作概念，循环工序为媒介在空间中讲述回收故事，赋予“裂变之间”的名字。通过分隔交叠统一等方式加强空间叙事性，以不同角度获得故事体验。空间塑造上通过几何图形与空间切割作为设计语言，装饰上采用金属、玻璃与镜面等材质，色彩采用黑白灰加蓝，打造冷色科技感的空间.加入科普展示互动手工体验等多维度的空间体验，将空间形态和故事转译，更好服务目标对象人群。",
     images: [
-      "/images/1 (2).jpg",
-      "/images/2 (2).jpg",
-      "/images/3 (2).jpg",
+      "/images/1_2.jpg",
+      "/images/2_2.jpg",
+      "/images/3_2.jpg",
       "/images/4.jpg",
       "/images/5.jpg",
       "/images/6.jpg"
@@ -162,7 +162,6 @@ export const PROJECTS: Project[] = [
     images: [
       "/images/33.jpg",
       "/images/33.jpg",
-      "/images/34.jpg",
       "/images/34.jpg"
     ],
     tags: ["百千工程", "乡村振兴", "视觉系统", "品牌设计", "地域特质"]
